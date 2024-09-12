@@ -1,0 +1,1 @@
+# Delete_Resource_storageacc
