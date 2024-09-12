@@ -1,0 +1,22 @@
+name: Delete Azure Storage Account
+
+on:
+  workflow_dispatch:
+
+jobs:
+  delete-storage-account:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Azure CLI
+        uses: azure/actions/setup-azure@v1
+        with:
+          azcli: 'latest'
+          service-principal:
+            client-id: ${{ secrets.AZURE_CLIENT_ID }}
+            client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Delete Storage Account
+        run: |
+          az storage account delete --name delete101 --resource-group delete_me
